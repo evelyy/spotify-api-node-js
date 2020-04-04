@@ -1,0 +1,19 @@
+{
+  "name": "spotify-api-node",
+  "version": "1.0.0",
+  "description": "a promise based wrapper for the spotify api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomokoko/spotify-api-node-js.git"
+  },
+  "author": "tomokoko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomokoko/spotify-api-node-js/issues"
+  },
+  "homepage": "https://github.com/tomokoko/spotify-api-node-js#readme"
+}
