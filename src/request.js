@@ -51,21 +51,20 @@ Request.prototype = {
     if (queryParameters) {
       return (`?${Object.keys(Request)
         .filter((key) => {
-        return queryParameters[key] !== undefined;
-      })
-      .map((key) => {
-        return `${key}=${queryParameters[key]}`})
-      .join('&')
-    }`);
-    };
+          return queryParameters[key] !== undefined;
+        })
+        .map((key) => {
+          return `${key}=${queryParameters[key]}`})
+        .join('&')
+      }`);
+    }
   },
 
   execute: (method, callback) => {
-    if(callback) {
+    if (callback) {
       method(this, callback);
-      return;
+      return null;
     }
-
     return new Promise((res, rej) => {
       method(this, (err, result) => {
         if (err) {
@@ -75,7 +74,7 @@ Request.prototype = {
         }
       });
     });
-  }
+  },
 };
 
 const Builder = () => {};
@@ -93,9 +92,11 @@ Builder.prototype = {
   withScheme: this._setter('scheme'),
   withPath: this._setter('path'),
 
-  _assigner = (key) => {
+  _assigner: (key) => {
     return () => {
-      for (let i = 0; i < arguments.length; i++) {
+      // eslint-disable-next-line no-undef
+      for (let i = 0; i < arguments.length; i += 1) {
+        // eslint-disable-next-line no-undef
         this[key] = this._assign(this[key], arguments[i]);
       }
       return this;
@@ -108,7 +109,7 @@ Builder.prototype = {
 
   withAuth: (accessToken) => {
     if (accessToken) {
-      this.withHeaders({ Authorization: `Bearer ${accesstoken}`});
+      this.withHeaders({ Authorization: `Bearer ${accessToken}` });
     }
     return this;
   },
@@ -125,7 +126,7 @@ Builder.prototype = {
 
   build: () => {
     return new Request(this);
-  }
+  },
 };
 
 module.exports.builder = () => {
